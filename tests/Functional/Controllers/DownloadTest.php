@@ -50,8 +50,13 @@ final class DownloadTest extends TestCase
         $responseBody = json_decode(strval($response->getBody()), associative: true);
 
         $this->assertSame(StatusCodeInterface::STATUS_NOT_FOUND, $response->getStatusCode());
-        $this->assertArrayHasKey('status', $responseBody);
-        $this->assertArrayHasKey('size', $responseBody);
+        $this->assertSame([
+            'result' => [
+                'status' => ['code', 'message'],
+                'size',
+            ],
+            'token' => ['created', 'expires', 'value'],
+        ], $this->arrayStructure($responseBody));
     }
 
     public function testDownloadInvalid(): void

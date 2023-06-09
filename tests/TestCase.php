@@ -41,4 +41,21 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         }
         throw new LogicException($fail ?: "Unable to catch the exception $exceptionToCatch");
     }
+
+    /**
+     * @param array<mixed> $array
+     * @return array<mixed>
+     */
+    protected static function arrayStructure(array $array): array
+    {
+        $result = [];
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result[$key] = self::arrayStructure($value);
+            } else {
+                $result[] = $key;
+            }
+        }
+        return $result;
+    }
 }

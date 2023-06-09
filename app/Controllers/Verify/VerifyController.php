@@ -45,6 +45,9 @@ final class VerifyController extends BaseController
             );
         }
 
-        return $this->jsonResponse($response, data: $result);
+        return $this->jsonResponse($response, data: (object) [
+            'result' => $result,
+            'token' => $service->currentToken,
+        ]);
     }
 }

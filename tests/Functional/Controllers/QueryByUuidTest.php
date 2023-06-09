@@ -20,8 +20,13 @@ final class QueryByUuidTest extends TestCase
         $responseBody = json_decode(strval($response->getBody()), associative: true);
 
         $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
-        $this->assertArrayHasKey('requestId', $responseBody);
-        $this->assertArrayHasKey('status', $responseBody);
+        $this->assertSame([
+            'result' => [
+                'status' => ['code', 'message'],
+                'requestId',
+            ],
+            'token' => ['created', 'expires', 'value'],
+        ], $this->arrayStructure($responseBody));
     }
 
     public function testQueryByUuidInvalid(): void

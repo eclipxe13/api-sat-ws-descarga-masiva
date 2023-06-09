@@ -38,7 +38,10 @@ final class DownloadController extends BaseController
             $service = $this->satWsServiceFactory->create($inputs->credential, $inputs->token);
             $result = $service->download($inputs->packageId);
             if ('' === $result->getPackageContent()) {
-                return $this->jsonResponse($response, StatusCodeInterface::STATUS_NOT_FOUND, data: $result);
+                return $this->jsonResponse($response, StatusCodeInterface::STATUS_NOT_FOUND, data: (object) [
+                    'result' => $result,
+                    'token' => $service->currentToken,
+                ]);
             }
         } catch (Throwable $exception) {
             return $this->jsonResponse(

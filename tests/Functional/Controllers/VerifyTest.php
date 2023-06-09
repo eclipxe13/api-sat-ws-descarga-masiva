@@ -20,11 +20,16 @@ final class VerifyTest extends TestCase
         $responseBody = json_decode(strval($response->getBody()), associative: true);
 
         $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
-        $this->assertArrayHasKey('packagesIds', $responseBody);
-        $this->assertArrayHasKey('status', $responseBody);
-        $this->assertArrayHasKey('codeRequest', $responseBody);
-        $this->assertArrayHasKey('statusRequest', $responseBody);
-        $this->assertArrayHasKey('numberCfdis', $responseBody);
+        $this->assertSame([
+            'result' => [
+                'status' => ['code', 'message'],
+                'codeRequest' => ['value', 'message'],
+                'statusRequest' => ['value', 'message'],
+                'numberCfdis',
+                'packagesIds' => [],
+            ],
+            'token' => ['created', 'expires', 'value'],
+        ], $this->arrayStructure($responseBody));
     }
 
     public function testVerifyInvalid(): void
