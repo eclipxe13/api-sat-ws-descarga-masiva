@@ -11,7 +11,7 @@ use PhpCfdi\SatWsDescargaMasiva\Shared\ComplementoCfdi;
 /** @see \App\Controllers\Complements\ComplementsCfdiController */
 final class ComplementsCfdiTest extends TestCase
 {
-    public function testComplements(): void
+    public function testComplementsCfdi(): void
     {
         $request = $this->createJsonRequest('GET', '/complements/cfdi', $this->getTestingToken());
         $response = $this->getApp()->handle($request);

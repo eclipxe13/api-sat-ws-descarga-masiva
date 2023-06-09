@@ -11,7 +11,7 @@ use PhpCfdi\SatWsDescargaMasiva\Shared\ComplementoRetenciones;
 /** @see \App\Controllers\Complements\ComplementsRetentionController */
 final class ComplementsRetentionTest extends TestCase
 {
-    public function testComplements(): void
+    public function testComplementsRetention(): void
     {
         $request = $this->createJsonRequest('GET', '/complements/retention', $this->getTestingToken());
         $response = $this->getApp()->handle($request);
