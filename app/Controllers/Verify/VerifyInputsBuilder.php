@@ -15,7 +15,7 @@ final class VerifyInputsBuilder
     /** @throws Exception */
     public function build(Request $request): VerifyInputs
     {
-        $this->setUpInputs($request, ['certificate', 'privateKey']);
+        $this->setUpInputsFromRequest($request, ['certificate', 'privateKey']);
 
         return new VerifyInputs(
             $this->buildCredential(),

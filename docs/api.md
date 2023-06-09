@@ -61,6 +61,7 @@ Datos enviados:
 - `certificate`: Certificado FIEL a utilizar.
 - `privateKey`: Llave privada del certificado, necesaria para firmar.
 - `passphrase`: Clave de la llave privada.
+- `token{created, expires, value}`: Token de autenticación del SAT para ser reusado.
 - `requestType`: Tipo de solicitud (opcional): **`metadata`** o `xml`.
 - `since`: Fecha y hora completa o estampa de tiempo del punto inicial de la consulta.
 - `until`: Fecha y hora completa o estampa de tiempo del punto final de la consulta.
@@ -92,6 +93,7 @@ Datos enviados:
 - `certificate`: Certificado FIEL a utilizar.
 - `privateKey`: Llave privada del certificado, necesaria para firmar.
 - `passphrase`: Clave de la llave privada.
+- `token{created, expires, value}`: Token de autenticación del SAT para ser reusado.
 - `requestType`: Tipo de solicitud: `xml` o `metadata`.
 - `uuid`: UUID del CFDI.
 
@@ -116,6 +118,7 @@ Datos enviados:
 - `certificate`: Certificado FIEL a utilizar.
 - `privateKey`: Llave privada del certificado, necesaria para firmar.
 - `passphrase`: Clave de la llave privada.
+- `token{created, expires, value}`: Token de autenticación del SAT para ser reusado.
 - `requestId`: Identificador de la solicitud.
 
 Datos recibidos en caso correcto (`HTTP 200`):
@@ -150,6 +153,7 @@ Datos enviados:
 - `certificate`: Certificado FIEL a utilizar.
 - `privateKey`: Llave privada del certificado, necesaria para firmar.
 - `passphrase`: Clave de la llave privada.
+- `token{created, expires, value}`: Token de autenticación del SAT para ser reusado.
 - `packageId`: Identificador del paquete.
 
 Datos recibidos en caso correcto (`HTTP 200`):

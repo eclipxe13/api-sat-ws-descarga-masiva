@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Controllers\Shared;
 
+use PhpCfdi\SatWsDescargaMasiva\Shared\DateTime;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\UploadedFileInterface;
 use RuntimeException;
@@ -21,9 +22,16 @@ trait InputsTrait
     private array $inputs = [];
 
     /** @param string[] $jsonDecodeBase64 */
-    private function setUpInputs(Request $request, array $jsonDecodeBase64): void
+    private function setUpInputsFromRequest(Request $request, array $jsonDecodeBase64): void
     {
-        $this->inputs = $this->parsedBodyFromRequest($request, $jsonDecodeBase64);
+        $inputs = $this->parsedBodyFromRequest($request, $jsonDecodeBase64);
+        $this->setUpInputs($inputs);
+    }
+
+    /** @param array<mixed> $inputs */
+    private function setUpInputs(array $inputs): void
+    {
+        $this->inputs = $inputs;
     }
 
     /**
@@ -72,6 +80,14 @@ trait InputsTrait
             $values[$key] = $this->toString($value);
         }
         return $values;
+    }
+
+    private function buildDateTimeFromValue(string $value): DateTime
+    {
+        if (is_numeric($value)) {
+            $value = intval($value);
+        }
+        return DateTime::create($value);
     }
 
     private function toString(mixed $value): string

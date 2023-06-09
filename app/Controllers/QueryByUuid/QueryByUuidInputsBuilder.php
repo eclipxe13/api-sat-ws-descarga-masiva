@@ -19,7 +19,7 @@ final class QueryByUuidInputsBuilder
     /** @throws Exception */
     public function build(Request $request): QueryByUuidInputs
     {
-        $this->setUpInputs($request, ['certificate', 'privateKey']);
+        $this->setUpInputsFromRequest($request, ['certificate', 'privateKey']);
 
         return new QueryByUuidInputs(
             $this->buildCredential(),

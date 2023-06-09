@@ -25,7 +25,7 @@ final class QueryByFiltersInputsBuilder
     /** @throws Exception */
     public function build(Request $request): QueryByFiltersInputs
     {
-        $this->setUpInputs($request, ['certificate', 'privateKey']);
+        $this->setUpInputsFromRequest($request, ['certificate', 'privateKey']);
 
         return new QueryByFiltersInputs(
             $this->buildCredential(),
@@ -57,10 +57,7 @@ final class QueryByFiltersInputsBuilder
         if ('' === $value) {
             throw new Exception(sprintf('Missing value for parameter %s', $key));
         }
-        if (is_numeric($value)) {
-            $value = intval($value);
-        }
-        return DateTime::create($value);
+        return $this->buildDateTimeFromValue($value);
     }
 
     private function buildRequestType(): RequestType

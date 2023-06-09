@@ -6,7 +6,6 @@ namespace App\Controllers\Shared;
 
 use Exception;
 use PhpCfdi\Credentials\Credential;
-use PhpCfdi\SatWsDescargaMasiva\Shared\DateTime;
 use PhpCfdi\SatWsDescargaMasiva\Shared\Token;
 use Throwable;
 
@@ -38,8 +37,8 @@ trait WithCredentialInputBuilderTrait
         }
 
         return new Token(
-            DateTime::create($data['created']),
-            DateTime::create($data['expires']),
+            $this->buildDateTimeFromValue($data['created']),
+            $this->buildDateTimeFromValue($data['expires']),
             $data['value'],
         );
     }
