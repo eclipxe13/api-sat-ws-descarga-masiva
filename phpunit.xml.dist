@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+    colors="true"
+    bootstrap="tests/bootstrap.php"
+    cacheDirectory="build/.phpunit.cache"
+>
+    <source>
+        <include>
+            <directory>app</directory>
+        </include>
+    </source>
+    <testsuites>
+        <testsuite name="Default">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="AUTHORIZATION_TOKEN" value="$2y$10$zKP9f1BwnWkyLEUfMI8B7udmU1zpUSS0HHJ1aSKOyTOMv7cerrRrm"/>
+        <env name="AUTHORIZATION_TOKEN_PLAIN" value="testing"/>
+    </php>
+</phpunit>
