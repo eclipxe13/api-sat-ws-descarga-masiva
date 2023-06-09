@@ -24,9 +24,23 @@ Datos a recibir en caso de error de procesamiento (`HTTP 500`):
 
 - `error`: Mensaje de error.
 
-## `GET /complements-cfdi`
+## `GET /complements/cfdi`
 
 Obtiene un listado de código y leyenda de los complementos de CFDI aceptados.
+
+Datos recibidos en caso correcto (`HTTP 200`):
+
+```json5
+{
+    "cartaporte10": "Carta Porte 1.0",
+    "cartaporte20": "Carta Porte 2.0",
+    // etc...
+}
+```
+
+## `GET /complements/retention`
+
+Obtiene un listado de código y leyenda de los complementos de CFDI de Retenciones aceptados.
 
 Datos recibidos en caso correcto (`HTTP 200`):
 

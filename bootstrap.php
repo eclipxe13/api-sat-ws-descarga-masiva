@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 use App\Config\Config;
 use App\Config\ConfigBuilder;
-use App\Controllers\Complements\ComplementsController;
+use App\Controllers\Complements\ComplementsCfdiController;
+use App\Controllers\Complements\ComplementsRetentionController;
 use App\Controllers\Download\DownloadController;
 use App\Controllers\QueryByFilters\QueryByFiltersController;
 use App\Controllers\QueryByUuid\QueryByUuidController;
@@ -32,7 +33,8 @@ return (function (): App {
     $errorHandler = $errorMiddleware->getDefaultErrorHandler();
     $errorHandler->forceContentType('application/json');
 
-    $app->get('/complements-cfdi', ComplementsController::class);
+    $app->get('/complements/cfdi', ComplementsCfdiController::class);
+    $app->get('/complements/retention', ComplementsRetentionController::class);
     $app->post('/query-by-uuid', QueryByUuidController::class);
     $app->post('/query-by-filters', QueryByFiltersController::class);
     $app->post('/verify', VerifyController::class);
