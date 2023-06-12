@@ -2,7 +2,7 @@
 
 ## Acerca de
 
-Este proyecto es una JSON API para consumir la librería [`phpcfdi/sat-ws-descarga-masiva`](https://github.com/phpcfdi/api-sat-ws-descarga-masiva).
+Este proyecto es una JSON API para consumir la librería [`phpcfdi/sat-ws-descarga-masiva`](https://github.com/phpcfdi/sat-ws-descarga-masiva).
 
 ## Instalación por clonación del proyecto
 
