@@ -20,7 +20,18 @@ trait WithCredentialInputBuilderTrait
             $certificate = $this->getString('certificate', allowBase64: true);
             $privateKey = $this->getString('privateKey', allowBase64: true);
             $passPhrase = $this->getString('passphrase');
-            return Credential::create($certificate, $privateKey, $passPhrase);
+            $credential = Credential::create($certificate, $privateKey, $passPhrase);
+            if (! $credential->isFiel()) {
+                throw new Exception(
+                    sprintf('The certificate %s is not a FIEL', $credential->certificate()->serialNumber()->decimal())
+                );
+            }
+            if (! $credential->certificate()->validOn()) {
+                throw new Exception(
+                    sprintf('The certificate %s is expired', $credential->certificate()->serialNumber()->decimal())
+                );
+            }
+            return $credential;
         } catch (Throwable $exception) {
             throw new Exception(
                 'Unable to create a credential: ' . $exception->getMessage(),
