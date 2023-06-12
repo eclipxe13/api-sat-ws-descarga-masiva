@@ -49,8 +49,8 @@ Datos recibidos en caso correcto (`HTTP 200`):
 
 ```json5
 {
-    "cartaporte10": "Carta Porte 1.0",
-    "cartaporte20": "Carta Porte 2.0",
+    "arrendamientoenfideicomiso": "Arrendamiento en fideicomiso",
+    "dividendos": "Dividendos",
     // etc...
 }
 ```
