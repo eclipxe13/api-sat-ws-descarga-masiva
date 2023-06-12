@@ -23,12 +23,12 @@ trait WithCredentialInputBuilderTrait
             $credential = Credential::create($certificate, $privateKey, $passPhrase);
             if (! $credential->isFiel()) {
                 throw new Exception(
-                    sprintf('The certificate %s is not a FIEL', $credential->certificate()->serialNumber()->decimal())
+                    sprintf('The certificate %s is not a FIEL', $credential->certificate()->serialNumber()->decimal()),
                 );
             }
             if (! $credential->certificate()->validOn()) {
                 throw new Exception(
-                    sprintf('The certificate %s is expired', $credential->certificate()->serialNumber()->decimal())
+                    sprintf('The certificate %s is expired', $credential->certificate()->serialNumber()->decimal()),
                 );
             }
             return $credential;
