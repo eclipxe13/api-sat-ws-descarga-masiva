@@ -15,7 +15,7 @@ final class DownloadInputsBuilder
     /** @throws Exception */
     public function build(Request $request): DownloadInputs
     {
-        $this->setUpInputsFromRequest($request, ['certificate', 'privateKey']);
+        $this->setUpInputsFromRequest($request);
 
         return new DownloadInputs(
             $this->buildCredential(),

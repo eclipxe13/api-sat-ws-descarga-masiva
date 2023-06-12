@@ -25,7 +25,7 @@ final class QueryByFiltersInputsBuilder
     /** @throws Exception */
     public function build(Request $request): QueryByFiltersInputs
     {
-        $this->setUpInputsFromRequest($request, ['certificate', 'privateKey']);
+        $this->setUpInputsFromRequest($request);
 
         return new QueryByFiltersInputs(
             $this->buildCredential(),

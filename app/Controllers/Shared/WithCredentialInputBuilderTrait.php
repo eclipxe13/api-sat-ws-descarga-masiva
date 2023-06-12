@@ -17,8 +17,8 @@ trait WithCredentialInputBuilderTrait
     private function buildCredential(): Credential
     {
         try {
-            $certificate = $this->getString('certificate');
-            $privateKey = $this->getString('privateKey');
+            $certificate = $this->getString('certificate', allowBase64: true);
+            $privateKey = $this->getString('privateKey', allowBase64: true);
             $passPhrase = $this->getString('passphrase');
             return Credential::create($certificate, $privateKey, $passPhrase);
         } catch (Throwable $exception) {

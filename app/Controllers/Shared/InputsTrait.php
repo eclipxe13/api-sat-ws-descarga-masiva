@@ -21,10 +21,12 @@ trait InputsTrait
     /** @var array<mixed> */
     private array $inputs = [];
 
-    /** @param string[] $jsonDecodeBase64 */
-    private function setUpInputsFromRequest(Request $request, array $jsonDecodeBase64): void
+    private function setUpInputsFromRequest(Request $request): void
     {
-        $inputs = $this->parsedBodyFromRequest($request, $jsonDecodeBase64);
+        $inputs = array_merge(
+            (array) ($request->getParsedBody() ?? []),
+            $this->uploadedFilesToInputs($request->getUploadedFiles()),
+        );
         $this->setUpInputs($inputs);
     }
 
@@ -34,32 +36,18 @@ trait InputsTrait
         $this->inputs = $inputs;
     }
 
-    /**
-     * @param Request $request
-     * @param string[] $jsonDecodeBase64
-     * @return array<mixed>
-     */
-    private function parsedBodyFromRequest(Request $request, array $jsonDecodeBase64): array
-    {
-        $parsedBody = (array) ($request->getParsedBody() ?? []);
-        foreach ($parsedBody as $key => $value) {
-            if (in_array($key, $jsonDecodeBase64, true) && is_string($value)) {
-                $parsedBody[$key] = base64_decode($value);
-            }
-        }
-        return array_merge(
-            $parsedBody,
-            $this->uploadedFilesToInputs($request->getUploadedFiles()),
-        );
-    }
-
-    private function getString(string $key): string
+    private function getString(string $key, bool $allowBase64 = false): string
     {
         if (! isset($this->inputs[$key])) {
             return '';
         }
 
-        return $this->toString($this->inputs[$key]);
+        $value = $this->toString($this->inputs[$key]);
+        if ($allowBase64 && str_starts_with($value, 'base64:')) {
+            $value = (string) base64_decode(substr($value, 7), true);
+        }
+
+        return $value;
     }
 
     /**

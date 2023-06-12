@@ -2,8 +2,11 @@
 
 ## Acerca de los datos enviados
 
-Los datos enviados pueden ser una estructura JSON (con archivos codificados en Base64),
-o bien, datos enviados por un formulario con archivos (`multipart/form-data`).
+Los datos enviados pueden ser una estructura JSON, o bien,
+datos enviados por un formulario con archivos (`multipart/form-data`).
+
+Para enviar el certificado y llave privada vía JSON, codifique en Base64 el contenido de los archivos
+y agregue el prefijo `base64:`. De esta forma se podrán interpretar los datos correctamente.
 
 ## Acerca de la respuesta
 

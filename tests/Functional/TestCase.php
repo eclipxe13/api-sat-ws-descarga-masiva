@@ -86,8 +86,8 @@ abstract class TestCase extends \App\Tests\TestCase
         array|null $inputs = null,
     ): ServerRequestInterface {
         $inputs = array_merge([
-            'certificate' => base64_encode($this->fileContents('/fiel/EKU9003173C9.cer')),
-            'privateKey' => base64_encode($this->fileContents('/fiel/EKU9003173C9.key')),
+            'certificate' => 'base64:' . base64_encode($this->fileContents('/fiel/EKU9003173C9.cer')),
+            'privateKey' => 'base64:' . base64_encode($this->fileContents('/fiel/EKU9003173C9.key')),
             'passphrase' => trim($this->fileContents('/fiel/EKU9003173C9-password.txt')),
         ], $inputs ?? []);
         return $this->createJsonRequest($method, $uri, $this->getTestingToken(), $inputs);
