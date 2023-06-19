@@ -29,11 +29,14 @@ RUN set -e && \
 WORKDIR /opt/api-sat-ws-descarga-masiva
 
 RUN set -e \
-    && export COMPOSER_ALLOW_SUPERUSER=1 \
-    && composer self-update --no-progress \
+    && export COMPOSER_ALLOW_SUPERUSER=1 COMPOSER_NO_INTERACTION=1 \
+    && composer self-update \
     && composer --version \
+    && composer config --list \
+    && curl --silent https://composer.github.io/releases.pub  --output "$(composer config home --global)"/keys.dev.pub \
+    && curl --silent https://composer.github.io/snapshots.pub --output "$(composer config home --global)"/keys.tags.pub \
     && composer diagnose \
-    && composer update --no-interaction --no-progress --prefer-dist --no-dev --optimize-autoloader \
+    && composer update --no-progress --prefer-dist --no-dev --optimize-autoloader \
     && rm -rf "$(composer config cache-dir --global)" "$(composer config data-dir --global)" "$(composer config home --global)"
 
 EXPOSE 80
